@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Python Chatbot</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            background: #f3f4f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .chat-container {
+            width: 520px;
+            max-width: 92%;
+            background: white;
+            border-radius: 16px;
+            padding: 28px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 0;
+            color: #222;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #777;
+            margin-bottom: 25px;
+        }
+
+        .message-box {
+            margin-bottom: 20px;
+        }
+
+        .user-message,
+        .bot-message {
+            padding: 14px 16px;
+            border-radius: 10px;
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        .user-message {
+            background: #eef4ff;
+            color: #174ea6;
+        }
+
+        .bot-message {
+            background: #eef8ee;
+            color: #217a21;
+        }
+
+        form {
+            display: flex;
+            gap: 10px;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 13px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+
+        button {
+            border: none;
+            padding: 13px 22px;
+            border-radius: 8px;
+            background: #222;
+            color: white;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        button:hover {
+            opacity: 0.85;
+        }
+
+        .examples {
+            margin-top: 18px;
+            color: #777;
+            font-size: 13px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="chat-container">
+        <h1>🤖 Basic Chatbot</h1>
+        <div class="subtitle">Python + Django Rule-Based Chatbot</div>
+
+        {% if user_message %}
+            <div class="message-box">
+                <div class="user-message">
+                    <strong>You:</strong> {{ user_message }}
+                </div>
+
+                <div class="bot-message">
+                    <strong>Bot:</strong> {{ bot_response }}
+                </div>
+            </div>
+        {% endif %}
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <input
+                type="text"
+                name="message"
+                placeholder="Type your message..."
+                autocomplete="off"
+                required
+            >
+
+            <button type="submit">Send</button>
+        </form>
+
+        <div class="examples">
+            Try: hello · how are you · what is your name · help · bye
+        </div>
+    </div>
+</body>
+</html>
